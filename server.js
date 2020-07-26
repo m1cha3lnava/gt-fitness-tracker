@@ -4,7 +4,7 @@ const path = require("path");
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
+const db = require("./models/workout");
 
 const app = express();
 
@@ -34,10 +34,10 @@ app.get("/api/workouts/range", (req, res) => {
 //   res.json(res);
 });
 app.get("/stats", (req, res) => {
-  res.send("/stats");
+  res.sendFile(path.join(__dirname, "./public/stats.html"));
 });
 app.get("/exercise", (req, res) => {
-  res.send("/exercise");
+  res.sendFile(path.join(__dirname, "./public/exercise.html"));
 });
 
 // post routes
