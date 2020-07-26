@@ -19,10 +19,29 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 });
 //view routes
 app.get("/", (req, res) => {
-  res.render("index");
+  res.send("/");
 });
+
+app.get("/api/workouts", (req, res) => {
+//   res.json(res);
+});
+
+app.get("/api/workouts:id", (req, res) => {
+//   res.json(res);
+});
+
+app.get("/api/workouts/range", (req, res) => {
+//   res.json(res);
+});
+app.get("/stats", (req, res) => {
+  res.send("/stats");
+});
+app.get("/exercise", (req, res) => {
+  res.send("/exercise");
+});
+
 // post routes
-app.post("submit", ({ body }, res) => {
+app.post("/api/workouts", ({ body }, res) => {
   // const workout =
 });
 //update routes
