@@ -4,7 +4,7 @@ const path = require("path");
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models/workout");
+const db = require("./models");
 
 const app = express();
 
@@ -19,19 +19,28 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 });
 //view routes
 app.get("/", (req, res) => {
-  res.send("/");
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 app.get("/api/workouts", (req, res) => {
-//   res.json(res);
+  db.Workout.find().then((results) => {
+    res.json(results);
+  });
 });
 
-app.get("/api/workouts:id", (req, res) => {
-//   res.json(res);
+app.put("/api/workouts/:id", (req, res) => {
+  db.Workout.update(
+    { _id: req.params.id },
+    { $push: { exercises: req.body } }
+  ).then((results) => {
+    res.json(results);
+  });
 });
 
 app.get("/api/workouts/range", (req, res) => {
-//   res.json(res);
+  db.Workout.find({}).then((results) => {
+    res.json(results);
+  });
 });
 app.get("/stats", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/stats.html"));
@@ -42,7 +51,9 @@ app.get("/exercise", (req, res) => {
 
 // post routes
 app.post("/api/workouts", ({ body }, res) => {
-  // const workout =
+  db.Workout.create(body).then((results) => {
+    res.json(results);
+  });
 });
 //update routes
 
