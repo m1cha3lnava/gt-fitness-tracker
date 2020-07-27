@@ -23,17 +23,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/workouts", (req, res) => {
-  db.Workout.find().then((results) => {
-    res.json(results);
-  });
-});
-
-app.put("/api/workouts/:id", (req, res) => {
-  db.Workout.update(
-    { _id: req.params.id },
-    { $push: { exercises: req.body } }
-  ).then((results) => {
-    res.json(results);
+  db.Workout.find({}).then((results) => {
+    res.json(results); 
   });
 });
 
@@ -49,15 +40,23 @@ app.get("/exercise", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/exercise.html"));
 });
 
+app.put("/api/workouts/:id", (req, res) => {
+  db.Workout.update(
+    { _id: req.params.id },
+    { $push: { exercises: req.body } }
+  ).then((results) => {
+    res.json(results);
+  });
+});
+
 // post routes
 app.post("/api/workouts", ({ body }, res) => {
   db.Workout.create(body).then((results) => {
     res.json(results);
   });
 });
-//update routes
 
-//delete routes
+// app.delete("/api/workout/:id");
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
