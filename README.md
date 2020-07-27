@@ -2,7 +2,7 @@
 
   ## Description
 
-  This app lets you create and track your workouts
+  This app lets you create and track your workouts with helpful stats.
 
   ## Table of contents
 
@@ -15,17 +15,15 @@
   
   ## Installation
 
-  To install necessary dependencies, run <code>npm install</code>.<br> 
-  mongoosedb express
+  To install necessary dependencies, run <code>npm install</code> to install the packages and then <code>npm run seed</code> to add seeds to the database.<br> Also mongodb needs to installed and running if you want to modify it on your local machine.
+  mongoose express
+
+
 
   ## Usage
   This app uses mongoose db and is deployed to Heroku at https://radiant-spire-56655.herokuapp.com/
-
-  ## Screenshots
   
 
-  ## Tests
-  N/A
   
   ## Contributing
 
